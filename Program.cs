@@ -10,7 +10,19 @@ namespace inclui.edadfecha
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("MASIMOOO");
+            DateTime primeraFecha = CSComprobaciones.FechaCorrecta();
+            int diasPrimero = (int)(DateTime.Today - primeraFecha).TotalDays; 
+            DateTime segundaFecha = CSComprobaciones.FechaCorrecta();           
+            int diasSegundo = (int)(DateTime.Today - segundaFecha).TotalDays;
+            int diferenciaFechas = Math.Abs(diasPrimero - diasSegundo);
+
+
+            //int EdadAños = 
+            //string prueba2 = "15/03/2010";
+            //DateTime datoPrueba2 = Convert.ToDateTime(prueba2);
+
+            //Console.WriteLine((datoPrueba2  -  datoPrueba2)TotalDays);
+            //Console.ReadKey();
         }
     }
 }
