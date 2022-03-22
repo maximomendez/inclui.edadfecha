@@ -1,19 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace inclui.edadfecha
 {
     class CSComprobaciones
     {
-        public static DateTime FechaCorrecta()
+        public static DatosAnio.InformacionAnio SolicitarFecha(string mensaje)
+        {
+            DatosAnio.InformacionAnio fechaAnio = new DatosAnio.InformacionAnio();
+
+            DateTime fecha = FechaCorrecta(mensaje);
+            bool antesCristo = SolicitarAntesDespuesCristo();
+
+            fechaAnio.fechaPrimera = fecha;
+            fechaAnio.antesCristo = antesCristo;
+
+            return fechaAnio;
+
+        }
+        private static DateTime FechaCorrecta(string mensaje)
         {
             bool fechaBien = false;
             DateTime fechaValida;
             do
             {
+                Console.WriteLine(mensaje);
                 Console.Write("Introduzca una fecha válida (dd/mm/aaaa): ");
                 if (DateTime.TryParse(Console.ReadLine(), out fechaValida))
                 {
@@ -32,11 +42,39 @@ namespace inclui.edadfecha
                     Console.WriteLine("La fecha introducida no es correcta.");
                 }
 
-                continuar();
+                Continuar();
 
             } while (!fechaBien);
 
             return fechaValida;
+        }
+
+        private static bool SolicitarAntesDespuesCristo()
+        {
+            bool antesCristo = false;
+
+            char Fecha = OpcionesMenu.LeerOpcionFecha();
+
+            if (Fecha == 's')
+            {
+                antesCristo = true;
+            }
+
+            return antesCristo;
+
+        }
+
+        public static int ComprobarEdadFechas(DateTime primeraFecha, DateTime segundaFecha)
+        {
+            int anioPrimeraFecha = primeraFecha.Year;
+            int anioSegundaFecha = segundaFecha.Year;
+            int anioDiferencia = anioSegundaFecha - anioPrimeraFecha;
+
+            string puedafecha = segundaFecha.Day + "/" + segundaFecha.Month + "/" + anioPrimeraFecha;
+
+            DateTime prueba = DateTime.Parse(puedafecha);
+
+            return 0;
         }
 
         //public static int DevolverDias(DateTime fechaComprobar)
@@ -45,30 +83,7 @@ namespace inclui.edadfecha
         //    return numeroDiasTotales;
         //}
 
-        public static bool AnoBisiesto(int anio)
-        {
-            bool bisiesto = false;
-
-            if (anio % 400 == 0)
-            {
-                bisiesto = true;
-            }
-            else
-            {
-                if (anio % 4 == 0)
-                {
-                    if (anio % 100 != 0)
-                    {
-                        bisiesto = true;
-                    }
-                }
-            }
-
-            return bisiesto;
-        }
-
-
-        public static void continuar()
+        public static void Continuar()
         {
             Console.WriteLine("Introduzca una tecla para continuar.");
             Console.ReadKey(true);

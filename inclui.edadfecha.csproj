@@ -45,6 +45,9 @@
   <ItemGroup>
     <Compile Include="CSComprobaciones.cs" />
     <Compile Include="CSDias.cs" />
+    <Compile Include="DatosAnio.cs" />
+    <Compile Include="MostrarMenu.cs" />
+    <Compile Include="OpcionesMenu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

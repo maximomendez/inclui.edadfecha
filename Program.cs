@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace inclui.edadfecha
 {
@@ -10,19 +6,57 @@ namespace inclui.edadfecha
     {
         static void Main(string[] args)
         {
-            DateTime primeraFecha = CSComprobaciones.FechaCorrecta();
-            int diasPrimero = (int)(DateTime.Today - primeraFecha).TotalDays; 
-            DateTime segundaFecha = CSComprobaciones.FechaCorrecta();           
-            int diasSegundo = (int)(DateTime.Today - segundaFecha).TotalDays;
-            int diferenciaFechas = Math.Abs(diasPrimero - diasSegundo);
+
+            DatosAnio.InformacionAnio primeraFecha;
+            DatosAnio.InformacionAnio segundaFecha;
+
+            int opcion = 0;
+            do
+            {
+                MostrarMenu.Menu();
+                opcion = OpcionesMenu.LeerOpciones();
+                switch (opcion)
+                {
+                    case 1:
+                        primeraFecha = CSComprobaciones.SolicitarFecha("Introduzca la primera fecha");
+                        segundaFecha = CSComprobaciones.SolicitarFecha("Introduzca la segunda fecha"); 
+                        break;
+                    case 2:  break;
+                    case 3: break;
+                    case 4:  break;
+                    case 5:  break;
+                    case 6:  break;
+                    case 7: break;
+                    
+                }
 
 
-            //int EdadAños = 
-            //string prueba2 = "15/03/2010";
-            //DateTime datoPrueba2 = Convert.ToDateTime(prueba2);
+            } while (opcion != 8);
 
-            //Console.WriteLine((datoPrueba2  -  datoPrueba2)TotalDays);
-            //Console.ReadKey();
+
+
+
+            ////5- Calcular la edad de la primera fecha, frente a la fecha actual en años
+
+            //CSComprobaciones.ComprobarEdadFechas(primeraFecha, DateTime.Today);
+
+            //int numAnio = primeraFecha.Year;
+
+            ////6- Calcular la edad de la primera fecha, frente a la fecha actual en días
+
+            //int diasPrimero = (int)(DateTime.Today - primeraFecha).TotalDays;
+
+            ////7- Calcular la edad de la segunda fecha, frente a la fecha actual en años
+
+
+            ////8- Calcular la edad de la segunda fecha, frente a la fecha actual en días
+
+            //int diasSegundo = (int)(DateTime.Today - segundaFecha).TotalDays;
+
+
+            ////9- Calcular la diferencia entre las dos fechas, en años y en días
+
+            //int diferenciaFechas = Math.Abs(diasPrimero - diasSegundo);
         }
     }
 }
