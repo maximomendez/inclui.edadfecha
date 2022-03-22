@@ -11,7 +11,7 @@ namespace inclui.edadfecha
             DateTime fecha = FechaCorrecta(mensaje);
             bool antesCristo = SolicitarAntesDespuesCristo();
 
-            fechaAnio.fecha = fecha;
+            fechaAnio.fechaPrimera = fecha;
             fechaAnio.antesCristo = antesCristo;
 
             return fechaAnio;
@@ -42,6 +42,8 @@ namespace inclui.edadfecha
                     Console.WriteLine("La fecha introducida no es correcta.");
                 }
 
+                Continuar();
+
             } while (!fechaBien);
 
             return fechaValida;
@@ -51,8 +53,6 @@ namespace inclui.edadfecha
         {
             bool antesCristo = false;
 
-            Console.WriteLine("Indique si el año es antes de cristo o despues");
-            Console.WriteLine("Pulse 's' para a.C o 'n' para d.C");
             char Fecha = OpcionesMenu.LeerOpcionFecha();
 
             if (Fecha == 's')
@@ -64,43 +64,24 @@ namespace inclui.edadfecha
 
         }
 
-        public static int ComprobarEdadFechas(DatosAnio.InformacionAnio primeraFecha, DatosAnio.InformacionAnio segundaFecha)
+        public static int ComprobarEdadFechas(DateTime primeraFecha, DateTime segundaFecha)
         {
-            int anioPrimeraFecha = primeraFecha.fecha.Year;
-            int anioSegundaFecha = segundaFecha.fecha.Year;
-            int anioDiferencia = Math.Abs(anioSegundaFecha - anioPrimeraFecha);
-            if (primeraFecha.antesCristo != segundaFecha.antesCristo)
-            {
-                if (primeraFecha.antesCristo)
-                {
-                    anioDiferencia += primeraFecha.fecha.Year;
-                }
-                else
-                {
-                    anioDiferencia += segundaFecha.fecha.Year;
-                }
-            }
+            int anioPrimeraFecha = primeraFecha.Year;
+            int anioSegundaFecha = segundaFecha.Year;
+            int anioDiferencia = anioSegundaFecha - anioPrimeraFecha;
 
-            return anioDiferencia;
+            string puedafecha = segundaFecha.Day + "/" + segundaFecha.Month + "/" + anioPrimeraFecha;
+
+            DateTime prueba = DateTime.Parse(puedafecha);
+
+            return 0;
         }
 
-        public static int DevolverDias(DatosAnio.InformacionAnio primeraFecha, DatosAnio.InformacionAnio segundaFecha)
-        {
-            int numeroDiasTotales = Math.Abs((int)(segundaFecha.fecha - primeraFecha.fecha).TotalDays);
-            if (primeraFecha.antesCristo != segundaFecha.antesCristo)
-            {
-                DateTime primerAnio = new DateTime();
-                if (primeraFecha.antesCristo)
-                {
-                    numeroDiasTotales += (int)(primeraFecha.fecha - primerAnio).TotalDays;
-                }
-                else
-                {
-                    numeroDiasTotales += (int)(segundaFecha.fecha - primerAnio).TotalDays;
-                }
-            }
-            return numeroDiasTotales;
-        }
+        //public static int DevolverDias(DateTime fechaComprobar)
+        //{
+        //    int numeroDiasTotales = (int)(DateTime.Today - fechaComprobar).TotalDays;
+        //    return numeroDiasTotales;
+        //}
 
         public static void Continuar()
         {

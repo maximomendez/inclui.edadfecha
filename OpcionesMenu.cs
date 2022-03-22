@@ -36,11 +36,14 @@ namespace inclui.edadfecha
             bool fin = false;
             do
             {
+                Console.WriteLine("Indique si el año es antes de cristo o despues");
+                Console.WriteLine("Pulse S para A.C o N para D.C");
+
                 tecla = Console.ReadKey(true);
                 switch (tecla.KeyChar)
                 {
-                    case 's': valor = 's'; fin = true; break;
-                    case 'n': valor = 'n'; fin = true; break;
+                    case 'S': valor = 'S'; fin = true; break;
+                    case 'N': valor = 'N'; fin = true; break;
 
                 }
 
