@@ -6,7 +6,7 @@ namespace inclui.edadfecha
     {
         public struct InformacionAnio
         {
-            public DateTime fechaPrimera;
+            public DateTime fecha;
             public bool antesCristo;
         }
 
