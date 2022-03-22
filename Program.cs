@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace inclui.edadfecha
 {
@@ -49,7 +53,7 @@ namespace inclui.edadfecha
                         Console.WriteLine("La diferencia de años entre {0} y {1} es de {2} años", primeraFecha.fecha, segundaFecha.fecha, diferenciaAnio);
                         break;
                     case 7:
-                        diferenciaDias = CSComprobaciones.DevolverDias(segundaFecha, segundaFecha);
+                        diferenciaDias = CSComprobaciones.DevolverDias(primeraFecha, segundaFecha);
                         Console.WriteLine("La diferencia de días entre {0} y {1} es de {2} días", segundaFecha.fecha, segundaFecha.fecha, diferenciaDias);
                         break;
                     
