@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace inclui.edadfecha
 {
@@ -12,7 +8,6 @@ namespace inclui.edadfecha
         {
             ConsoleKeyInfo tecla;
             int valor = 0;
-            bool fin = false;
             do
             {
                 tecla = Console.ReadKey(true);

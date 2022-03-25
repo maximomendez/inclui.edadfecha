@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace inclui.edadfecha
 {
@@ -31,15 +27,7 @@ namespace inclui.edadfecha
                 Console.Write("Introduzca una fecha válida (dd/mm/aaaa): ");
                 if (DateTime.TryParse(Console.ReadLine(), out fechaValida))
                 {
-                    if (fechaValida < DateTime.Today)
-                    {
-                        fechaBien = true;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Introduzca una fecha menor a la fecha actual.");
-                    }
-
+                    fechaBien = true;
                 }
                 else
                 {
@@ -68,50 +56,56 @@ namespace inclui.edadfecha
 
         }
 
-        public static int ComprobarEdadFechas(DatosAnio.InformacionAnio primeraFecha, DatosAnio.InformacionAnio segundaFecha)
+        public static int DevolverDiferenciaAnios(DatosAnio.InformacionAnio primeraFecha, DatosAnio.InformacionAnio segundaFecha)
         {
             int anioPrimeraFecha = primeraFecha.fecha.Year;
             int anioSegundaFecha = segundaFecha.fecha.Year;
             int anioDiferencia = Math.Abs(anioSegundaFecha - anioPrimeraFecha);
-            string[] separarPrimera = primeraFecha.fecha.ToString().Split('/');
-            string[] separarSegunda = segundaFecha.fecha.ToString().Split('/');
-
-            string prueba = separarPrimera[0] + "/" + separarPrimera[1] + "/" + separarSegunda[2];
-            if (DateTime.TryParse(prueba, out DateTime pruebaBien))
-            {
-                int resultado = DateTime.Compare(pruebaBien, segundaFecha.fecha);
-                if (resultado > 0)
-                {
-                    anioDiferencia--;
-                }
-            }
-            /*else      Prueba que falla jeje
-            {
-                string prueba2 = separarSegunda[0] + "/" + separarSegunda[1] + "/" + separarPrimera[2];
-                if (DateTime.TryParse(prueba2, out DateTime pruebaBien2))
-                {
-                    int resultado = DateTime.Compare(pruebaBien2, primeraFecha.fecha);
-                    if (resultado < 0)
-                    {
-                        anioDiferencia--;
-                    }
-                }
-            }*/
             if (primeraFecha.antesCristo != segundaFecha.antesCristo)
             {
                 if (primeraFecha.antesCristo)
                 {
-                    anioDiferencia += primeraFecha.fecha.Year*2;
+                    anioDiferencia += primeraFecha.fecha.Year * 2;
                 }
                 else
                 {
-                    anioDiferencia += segundaFecha.fecha.Year*2;
+                    anioDiferencia += segundaFecha.fecha.Year * 2;
                 }
             }
+
+            if (anioPrimeraFecha != anioSegundaFecha)
+            {
+                string fechaNueva = ""; 
+                DateTime primerFechaDia; 
+                DateTime segundoFechaDia;
+
+                if (anioPrimeraFecha < anioSegundaFecha)
+                {
+                    fechaNueva = "31/12/" + anioPrimeraFecha;
+                    primerFechaDia = DateTime.Parse(fechaNueva);
+                    fechaNueva = "1/1/" + anioSegundaFecha;
+                    segundoFechaDia = DateTime.Parse(fechaNueva);
+                }
+                else
+                {
+                    fechaNueva = "31/12/" + anioSegundaFecha;
+                    primerFechaDia = DateTime.Parse(fechaNueva);
+                    fechaNueva = "1/1/" + anioPrimeraFecha;
+                    segundoFechaDia = DateTime.Parse(fechaNueva);
+                }
+                int numDiasTotales = Math.Abs((int)(primeraFecha.fecha - primerFechaDia).TotalDays) + 1;
+                numDiasTotales += Math.Abs((int)(segundaFecha.fecha - segundoFechaDia).TotalDays);
+                if (numDiasTotales < 365)
+                {
+                    anioDiferencia--;
+                }
+            }
+
             return anioDiferencia;
+
         }
 
-        public static int DevolverDias(DatosAnio.InformacionAnio primeraFecha, DatosAnio.InformacionAnio segundaFecha)
+        public static int DevolverDiferenciaDias(DatosAnio.InformacionAnio primeraFecha, DatosAnio.InformacionAnio segundaFecha)
         {
             int numeroDiasTotales = Math.Abs((int)(segundaFecha.fecha - primeraFecha.fecha).TotalDays);
             if (primeraFecha.antesCristo != segundaFecha.antesCristo)
