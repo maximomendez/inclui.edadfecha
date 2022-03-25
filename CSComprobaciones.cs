@@ -73,14 +73,13 @@ namespace inclui.edadfecha
             {
                 if (primeraFecha.antesCristo)
                 {
-                    anioDiferencia += primeraFecha.fecha.Year;
+                    anioDiferencia += primeraFecha.fecha.Year*2;
                 }
                 else
                 {
-                    anioDiferencia += segundaFecha.fecha.Year;
+                    anioDiferencia += segundaFecha.fecha.Year*2;
                 }
             }
-
             return anioDiferencia;
         }
 
@@ -92,11 +91,11 @@ namespace inclui.edadfecha
                 DateTime primerAnio = new DateTime();
                 if (primeraFecha.antesCristo)
                 {
-                    numeroDiasTotales += (int)(primeraFecha.fecha - primerAnio).TotalDays;
+                    numeroDiasTotales += (int)((primeraFecha.fecha - primerAnio).TotalDays) * 2;
                 }
                 else
                 {
-                    numeroDiasTotales += (int)(segundaFecha.fecha - primerAnio).TotalDays;
+                    numeroDiasTotales += (int)((segundaFecha.fecha - primerAnio).TotalDays) * 2;
                 }
             }
             return numeroDiasTotales;
