@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace inclui.edadfecha
 {
@@ -69,6 +73,30 @@ namespace inclui.edadfecha
             int anioPrimeraFecha = primeraFecha.fecha.Year;
             int anioSegundaFecha = segundaFecha.fecha.Year;
             int anioDiferencia = Math.Abs(anioSegundaFecha - anioPrimeraFecha);
+            string[] separarPrimera = primeraFecha.fecha.ToString().Split('/');
+            string[] separarSegunda = segundaFecha.fecha.ToString().Split('/');
+
+            string prueba = separarPrimera[0] + "/" + separarPrimera[1] + "/" + separarSegunda[2];
+            if (DateTime.TryParse(prueba, out DateTime pruebaBien))
+            {
+                int resultado = DateTime.Compare(pruebaBien, segundaFecha.fecha);
+                if (resultado > 0)
+                {
+                    anioDiferencia--;
+                }
+            }
+            /*else      Prueba que falla jeje
+            {
+                string prueba2 = separarSegunda[0] + "/" + separarSegunda[1] + "/" + separarPrimera[2];
+                if (DateTime.TryParse(prueba2, out DateTime pruebaBien2))
+                {
+                    int resultado = DateTime.Compare(pruebaBien2, primeraFecha.fecha);
+                    if (resultado < 0)
+                    {
+                        anioDiferencia--;
+                    }
+                }
+            }*/
             if (primeraFecha.antesCristo != segundaFecha.antesCristo)
             {
                 if (primeraFecha.antesCristo)
