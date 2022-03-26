@@ -4,6 +4,11 @@ namespace inclui.edadfecha
 {
     class OpcionesMenu
     {
+        /// <summary>
+        /// Funcion que se encargara de leer el numero del menu
+        /// que pulsara el usuario
+        /// </summary>
+        /// <returns>Devolvera el numero del menu puesto por el usuario</returns>
         public static int LeerOpciones()
         {
             ConsoleKeyInfo tecla;
@@ -27,7 +32,11 @@ namespace inclui.edadfecha
 
             return valor;
         }
-
+        /// <summary>
+        /// Funcion que se encargara de leer la tecla
+        /// "s" o "n" depende si la fecha es a.C o a.D
+        /// </summary>
+        /// <returns>Devolvera la tecla pulsada por el usuario</returns>
         public static char LeerOpcionFecha()
         {
             ConsoleKeyInfo tecla;

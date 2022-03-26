@@ -62,6 +62,9 @@ namespace inclui.edadfecha
                         Console.WriteLine("La diferencia de días entre {0} y {1} es de {2} días", primeraFecha.fecha, segundaFecha.fecha, diferenciaDias);
                         break;
                 }
+
+                CSComprobaciones.Continuar();
+
             } while (opcion != 8);
         }
     }

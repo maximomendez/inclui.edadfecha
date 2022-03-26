@@ -4,6 +4,9 @@ namespace inclui.edadfecha
 {
     class MostrarMenu
     {
+        /// <summary>
+        /// Funcion que nos mostrara por pantalla como sera el menu
+        /// </summary>
         public static void Menu()
         {
             Console.WriteLine("----------------------------------------");

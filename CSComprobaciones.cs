@@ -4,6 +4,11 @@ namespace inclui.edadfecha
 {
     class CSComprobaciones
     {
+        /// <summary>
+        /// Funcion que solicitara fecha y si el año es a.C o d.C
+        /// </summary>
+        /// <param name="mensaje">Se le pasara que fecha tiene que introducir (Primera o Segunda)</param>
+        /// <returns>Devolvera un struct con la fecha y un bool si es a.C o d.C</returns>
         public static DatosAnio.InformacionAnio SolicitarFecha(string mensaje)
         {
             DatosAnio.InformacionAnio fechaAnio = new DatosAnio.InformacionAnio();
@@ -17,6 +22,10 @@ namespace inclui.edadfecha
             return fechaAnio;
 
         }
+        /// <summary>
+        /// Funcion que solicitara una fecha al usuario (No dejara de pedir hasta que no sea una fecha valida)
+        /// <param name="mensaje">Se le pasara que fecha tiene que introducir (Primera o Segunda)</param>
+        /// <returns>Devolera la fecha introducida por el usuario</returns>
         private static DateTime FechaCorrecta(string mensaje)
         {
             bool fechaBien = false;
@@ -34,11 +43,17 @@ namespace inclui.edadfecha
                     Console.WriteLine("La fecha introducida no es correcta.");
                 }
 
+                Continuar();
+
             } while (!fechaBien);
 
             return fechaValida;
         }
 
+        /// <summary>
+        /// Funcion que se encargara de pedir al usuario si la fecha es a.C o d.C
+        /// </summary>
+        /// <returns>Devolvera un bool true si es a.C o false si es d.C</returns>
         private static bool SolicitarAntesDespuesCristo()
         {
             bool antesCristo = false;
@@ -52,10 +67,19 @@ namespace inclui.edadfecha
                 antesCristo = true;
             }
 
+            Continuar();
+
             return antesCristo;
 
         }
 
+        /// <summary>
+        /// Funcion que devolvera los años de diferencia entre las dos fechas
+        /// (Depende de la opción elegida en el switch, la segunda fecha sera la actual)
+        /// </summary>
+        /// <param name="primeraFecha">Se le pasara la primera fecha puesta por el usuario</param>
+        /// <param name="segundaFecha">Se le pasara la segunda fecha puesta por el usuario</param>
+        /// <returns>Devolvera los años de diferencia</returns>
         public static int DevolverDiferenciaAnios(DatosAnio.InformacionAnio primeraFecha, DatosAnio.InformacionAnio segundaFecha)
         {
             int anioPrimeraFecha = primeraFecha.fecha.Year;
@@ -95,16 +119,46 @@ namespace inclui.edadfecha
                 }
                 int numDiasTotales = Math.Abs((int)(primeraFecha.fecha - primerFechaDia).TotalDays) + 1;
                 numDiasTotales += Math.Abs((int)(segundaFecha.fecha - segundoFechaDia).TotalDays);
-                if (numDiasTotales < 365)
+
+
+                /*
+                 * Se encargara de restarle un año a los años de diferencia, si alguno de 
+                 * de los años son bisiesto
+                 * Si los dias totales son menor o igual a 365, ya que si el año es bisiesto 
+                 * tiene que tener 366, para ser un año
+                */
+                
+
+
+                if (DateTime.IsLeapYear(anioPrimeraFecha) || DateTime.IsLeapYear(anioSegundaFecha))
                 {
-                    anioDiferencia--;
+                    if (numDiasTotales<=365)
+                    {
+                        anioDiferencia--;
+                    }        
                 }
+                else
+                {
+                    if (numDiasTotales < 365)
+                    {
+                        anioDiferencia--;
+                    }
+                }
+              
+
             }
 
             return anioDiferencia;
 
         }
 
+        /// <summary>
+        /// Funcion que devolvera los dias de diferencia entre las dos fechas 
+        /// (Depende de la opción elegida en el switch, la segunda fecha sera la actual)
+        /// </summary>
+        /// <param name="primeraFecha">Se le pasara la primera fecha puesta por el usuario</param>
+        /// <param name="segundaFecha">Se le pasara la segunda fecha puesta por el usuario</param>
+        /// <returns>Devolvera los dias de diferencia</returns>
         public static int DevolverDiferenciaDias(DatosAnio.InformacionAnio primeraFecha, DatosAnio.InformacionAnio segundaFecha)
         {
             int numeroDiasTotales = Math.Abs((int)(segundaFecha.fecha - primeraFecha.fecha).TotalDays);
@@ -123,6 +177,10 @@ namespace inclui.edadfecha
             return numeroDiasTotales;
         }
 
+
+        /// <summary>
+        /// Fucion la cual usaremos para cada vez que hagamos un paso limpiar pantalla
+        /// </summary>
         public static void Continuar()
         {
             Console.WriteLine("Introduzca una tecla para continuar.");
@@ -130,19 +188,6 @@ namespace inclui.edadfecha
             Console.Clear();
         }
 
-        /*public static int DiferenciaFechas()
-        {
-        int numDiferencia = 0;
-        if (DateTime.Compare(datoPrueba1, datoPrueba2) == 1)
-        {
-            Console.WriteLine((datoPrueba1 - datoPrueba2).TotalDays);
-        }
-        else
-        {
-            Console.WriteLine((datoPrueba2 - datoPrueba1).TotalDays);
-        }
-        return numDiferencia;
-        }*/
     }
 }
 
