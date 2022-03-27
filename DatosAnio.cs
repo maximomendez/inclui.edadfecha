@@ -2,7 +2,7 @@
 
 namespace inclui.edadfecha
 {
-    class DatosAnio
+    public class DatosAnio
     {
         public struct InformacionAnio
         {

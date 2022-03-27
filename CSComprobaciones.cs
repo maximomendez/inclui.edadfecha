@@ -2,7 +2,7 @@
 
 namespace inclui.edadfecha
 {
-    class CSComprobaciones
+    public class CSComprobaciones
     {
         /// <summary>
         /// Funcion que solicitara fecha y si el año es a.C o d.C
