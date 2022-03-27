@@ -133,63 +133,56 @@ namespace inclui.edadfecha
                 }
             }
 
+            DateTime fechaNueva;
+            int fechaDia;
+            int fechaMes;
+            int fechaAnio;
 
-            /*
-             * Se encargara de comprobar los dias que han pasado entre la primera fecha
-             * y el final de esa fecha, y los dias que han pasado desde el principio
-             * de la segunda fecha y el la fecha puesta, si la resta no da 365, no ha 
-             * pasado un año
-            */
-
-            if (anioPrimeraFecha != anioSegundaFecha)
+            /* Revisa si el primer o el segundo año es 29 de febrero
+             * si es así, se le resta un día, por lo que la gente del 29
+             * siempre va a cumplir el 28. Se revisa que las dos fechas no sean bisiestos
+             * a la vez. Si no lo son, Se revisa si la primera o la segunda es anterior. Se comparan
+             * ambas fechas y si el resultado es > 0 se resta un año. COMENTARIO PARA MAXI
+             */
+            if (segundaFecha.fecha.Month == 2 && segundaFecha.fecha.Day == 29)
             {
-                string fechaNueva = "";
-                DateTime primerFechaDia;
-                DateTime segundoFechaDia;
+                 segundaFecha.fecha = segundaFecha.fecha.AddDays(-1);
+            }
 
-                if (anioPrimeraFecha < anioSegundaFecha)
+            if (primeraFecha.fecha.Month == 2 && primeraFecha.fecha.Day == 29)
+            {
+                primeraFecha.fecha = primeraFecha.fecha.AddDays(-1);
+            }
+
+            if (primeraFecha.fecha.Year != segundaFecha.fecha.Year)
+            {
+                if (primeraFecha.fecha.CompareTo(segundaFecha.fecha) < 0)
                 {
-                    fechaNueva = "31/12/" + anioPrimeraFecha;
-                    primerFechaDia = DateTime.Parse(fechaNueva);
-                    fechaNueva = "1/1/" + anioSegundaFecha;
-                    segundoFechaDia = DateTime.Parse(fechaNueva);
+
+                    fechaDia = segundaFecha.fecha.Day;
+                    fechaMes = segundaFecha.fecha.Month;
+                    fechaAnio = primeraFecha.fecha.Year;
+
+                    fechaNueva = DateTime.Parse(fechaDia + "/" + fechaMes + "/" + fechaAnio);
+                    if (primeraFecha.fecha.CompareTo(fechaNueva) > 0)
+                    {
+                        anioDiferencia--;
+                    }
                 }
                 else
                 {
-                    fechaNueva = "31/12/" + anioSegundaFecha;
-                    primerFechaDia = DateTime.Parse(fechaNueva);
-                    fechaNueva = "1/1/" + anioPrimeraFecha;
-                    segundoFechaDia = DateTime.Parse(fechaNueva);
+
+                    fechaDia = primeraFecha.fecha.Day;
+                    fechaMes = primeraFecha.fecha.Month;
+                    fechaAnio = segundaFecha.fecha.Year;
+
+                    fechaNueva = DateTime.Parse(fechaDia + "/" + fechaMes + "/" + fechaAnio);
+
+                    if (segundaFecha.fecha.CompareTo(fechaNueva) > 0)
+                    {
+                        anioDiferencia--;
+                    }
                 }
-                int numDiasTotales = Math.Abs((int)(primeraFecha.fecha - primerFechaDia).TotalDays) + 1;
-                numDiasTotales += Math.Abs((int)(segundaFecha.fecha - segundoFechaDia).TotalDays);
-
-
-                /*
-                 * Se encargara de restarle un año a los años de diferencia, si alguno de 
-                 * de los años son bisiesto
-                 * Si los dias totales son menor o igual a 365, ya que si el año es bisiesto 
-                 * tiene que tener 366, para ser un año
-                */
-
-
-
-                //if (DateTime.IsLeapYear(anioPrimeraFecha) || DateTime.IsLeapYear(anioSegundaFecha))
-                //{
-                //    if (numDiasTotales<=365)
-                //    {
-                //        anioDiferencia--;
-                //    }        
-                //}
-                //else
-                //{
-                if (numDiasTotales < 365)
-                {
-                    anioDiferencia--;
-                }
-                //}
-
-
             }
 
             return anioDiferencia;
