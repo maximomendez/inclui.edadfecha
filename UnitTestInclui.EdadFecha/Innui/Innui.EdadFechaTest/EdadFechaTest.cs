@@ -92,48 +92,6 @@ namespace Inclui.EdadFechaTest
         }
 
         [TestMethod]
-        public void HallarDiferenciaEnAnioConFechaActual()
-        {
-            DatosAnio.InformacionAnio primeraFecha = new DatosAnio.InformacionAnio
-            {
-                fecha = DateTime.Parse("01/02/2010"),
-                antesCristo = false
-            };
-
-            DatosAnio.InformacionAnio segundaFecha = new DatosAnio.InformacionAnio
-            {
-                fecha = DateTime.Now,
-                antesCristo = false
-            };
-
-            int resultadoReal = CSComprobaciones.DevolverDiferenciaAnios(primeraFecha, segundaFecha);
-            int resultadoEsperado = 12;
-
-            Assert.AreEqual(resultadoEsperado, resultadoReal);
-        }
-
-        [TestMethod]
-        public void HallarDiferenciaEnDiasConFechaActual()
-        {
-            DatosAnio.InformacionAnio primeraFecha = new DatosAnio.InformacionAnio
-            {
-                fecha = DateTime.Parse("01/02/2010"),
-                antesCristo = false
-            };
-
-            DatosAnio.InformacionAnio segundaFecha = new DatosAnio.InformacionAnio
-            {
-                fecha = DateTime.Now,
-                antesCristo = false
-            };
-
-            int resultadoReal = CSComprobaciones.DevolverDiferenciaDias(primeraFecha, segundaFecha);
-            int resultadoEsperado = 4437;
-
-            Assert.AreEqual(resultadoEsperado, resultadoReal);
-        }
-
-        [TestMethod]
         public void HallarDiferenciaEnAnioFechasSinAnios()
         {
             DatosAnio.InformacionAnio primeraFecha = new DatosAnio.InformacionAnio
