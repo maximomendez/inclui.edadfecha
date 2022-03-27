@@ -2,6 +2,10 @@
 
 namespace inclui.edadfecha
 {
+    /// <summary>
+    /// Clase inicial en la cual tendremos el menu y 
+    /// las llamadas a las funciones del programa
+    /// </summary>
     class Program
     {
         static void Main(string[] args)

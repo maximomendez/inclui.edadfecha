@@ -2,6 +2,11 @@
 
 namespace inclui.edadfecha
 {
+    /// <summary>
+    /// Clase en al cual tendremos una funcion
+    /// donde el usuario debera de elegir que opcion quiere
+    /// del menu
+    /// </summary>
     class OpcionesMenu
     {
         /// <summary>

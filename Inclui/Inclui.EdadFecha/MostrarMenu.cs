@@ -2,6 +2,10 @@
 
 namespace inclui.edadfecha
 {
+    /// <summary>
+    /// Clase en la cual tendremos una funcion para 
+    /// mostrar el menu
+    /// </summary>
     class MostrarMenu
     {
         /// <summary>

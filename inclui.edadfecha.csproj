@@ -43,15 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CSComprobaciones.cs" />
-    <Compile Include="DatosAnio.cs" />
-    <Compile Include="MostrarMenu.cs" />
-    <Compile Include="OpcionesMenu.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Inclui\Inclui.EdadFecha\CSComprobaciones.cs" />
+    <Compile Include="Innui\Innui.EdadFecha\DatosAnio.cs" />
+    <Compile Include="Inclui\Inclui.EdadFecha\MostrarMenu.cs" />
+    <Compile Include="Inclui\Inclui.EdadFecha\OpcionesMenu.cs" />
+    <Compile Include="Inclui\Inclui.EdadFecha\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="Inclui\Inclui.EdadFecha\App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
