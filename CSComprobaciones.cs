@@ -29,18 +29,45 @@ namespace inclui.edadfecha
         private static DateTime FechaCorrecta(string mensaje)
         {
             bool fechaBien = false;
-            DateTime fechaValida;
+            DateTime fechaValida = DateTime.Now;
             do
             {
                 Console.WriteLine(mensaje);
                 Console.Write("Introduzca una fecha válida (dd/mm/aaaa): ");
-                if (DateTime.TryParse(Console.ReadLine(), out fechaValida))
+                string fecha = Console.ReadLine();
+
+                if (fecha.Contains("/"))
                 {
-                    fechaBien = true;
+                    string[] fechaPosiciones = fecha.Split('/');
+
+                    if (fechaPosiciones.Length == 3)
+                    {
+                        if (fechaPosiciones[2].Length == 4)
+                        {
+                            if (DateTime.TryParse(fecha, out fechaValida))
+                            {
+                                fechaBien = true;
+                            }
+                            else
+                            {
+                                Console.WriteLine("La fecha introducida no es correcta.");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("El año tiene que tener 4 numeros o menos");
+                        }
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("La fecha tiene que tener tres campos");
+                    }
+
                 }
                 else
                 {
-                    Console.WriteLine("La fecha introducida no es correcta.");
+                    Console.WriteLine("La fecha tiene que estar dividida por /");
                 }
 
                 Continuar();
@@ -82,6 +109,15 @@ namespace inclui.edadfecha
         /// <returns>Devolvera los años de diferencia</returns>
         public static int DevolverDiferenciaAnios(DatosAnio.InformacionAnio primeraFecha, DatosAnio.InformacionAnio segundaFecha)
         {
+
+
+            /*
+             * Si alguno de los dos años es antes de Cristo, 
+             * se encargara de cacular los años desde el año antes de cristo 
+             * hasta ese año despues de cristo, luego le sumara el resto de años normales
+             * despues de cristo entre esos dos años
+            */
+
             int anioPrimeraFecha = primeraFecha.fecha.Year;
             int anioSegundaFecha = segundaFecha.fecha.Year;
             int anioDiferencia = Math.Abs(anioSegundaFecha - anioPrimeraFecha);
@@ -97,10 +133,18 @@ namespace inclui.edadfecha
                 }
             }
 
+
+            /*
+             * Se encargara de comprobar los dias que han pasado entre la primera fecha
+             * y el final de esa fecha, y los dias que han pasado desde el principio
+             * de la segunda fecha y el la fecha puesta, si la resta no da 365, no ha 
+             * pasado un año
+            */
+
             if (anioPrimeraFecha != anioSegundaFecha)
             {
-                string fechaNueva = ""; 
-                DateTime primerFechaDia; 
+                string fechaNueva = "";
+                DateTime primerFechaDia;
                 DateTime segundoFechaDia;
 
                 if (anioPrimeraFecha < anioSegundaFecha)
@@ -127,24 +171,24 @@ namespace inclui.edadfecha
                  * Si los dias totales son menor o igual a 365, ya que si el año es bisiesto 
                  * tiene que tener 366, para ser un año
                 */
-                
 
 
-                if (DateTime.IsLeapYear(anioPrimeraFecha) || DateTime.IsLeapYear(anioSegundaFecha))
+
+                //if (DateTime.IsLeapYear(anioPrimeraFecha) || DateTime.IsLeapYear(anioSegundaFecha))
+                //{
+                //    if (numDiasTotales<=365)
+                //    {
+                //        anioDiferencia--;
+                //    }        
+                //}
+                //else
+                //{
+                if (numDiasTotales < 365)
                 {
-                    if (numDiasTotales<=365)
-                    {
-                        anioDiferencia--;
-                    }        
+                    anioDiferencia--;
                 }
-                else
-                {
-                    if (numDiasTotales < 365)
-                    {
-                        anioDiferencia--;
-                    }
-                }
-              
+                //}
+
 
             }
 
