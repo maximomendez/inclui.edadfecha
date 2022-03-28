@@ -121,81 +121,89 @@ namespace inclui.edadfecha
              * hasta ese año despues de cristo, luego le sumara el resto de años normales
              * despues de cristo entre esos dos años
             */
-
-            int anioPrimeraFecha = primeraFecha.fecha.Year;
-            int anioSegundaFecha = segundaFecha.fecha.Year;
-            int anioDiferencia = Math.Abs(anioSegundaFecha - anioPrimeraFecha);
-            if (primeraFecha.antesCristo != segundaFecha.antesCristo)
+            int anioDiferencia;
+            try
             {
-                if (primeraFecha.antesCristo)
+                int anioPrimeraFecha = primeraFecha.fecha.Year;
+                int anioSegundaFecha = segundaFecha.fecha.Year;
+                anioDiferencia = Math.Abs(anioSegundaFecha - anioPrimeraFecha);
+                if (primeraFecha.antesCristo != segundaFecha.antesCristo)
                 {
-                    anioDiferencia += primeraFecha.fecha.Year * 2;
-                }
-                else
-                {
-                    anioDiferencia += segundaFecha.fecha.Year * 2;
-                }
-            }
-
-            DateTime fechaNueva;
-            int fechaDia;
-            int fechaMes;
-            int fechaAnio;
-
-            /* Revisa si el primer o el segundo año es 29 de febrero
-             * si es así, se le resta un día, por lo que la gente del 29
-             * siempre va a cumplir el 28. 
-             * Se revisa que las dos fechas no sean fechas iguales a la vez. 
-             * Si no lo son, Se revisa si la primera o la segunda es anterior. Se comparan
-             * ambas fechas y si el resultado es > 0 se resta un año.
-             */
-
-            if (segundaFecha.fecha.Month == 2 && segundaFecha.fecha.Day == 29)
-            {
-                segundaFecha.fecha = segundaFecha.fecha.AddDays(-1);
-            }
-
-            if (primeraFecha.fecha.Month == 2 && primeraFecha.fecha.Day == 29)
-            {
-                primeraFecha.fecha = primeraFecha.fecha.AddDays(-1);
-            }
-
-            if (primeraFecha.fecha.Year != segundaFecha.fecha.Year)
-            {
-                if (primeraFecha.fecha.CompareTo(segundaFecha.fecha) < 0)
-                {
-
-                    fechaDia = segundaFecha.fecha.Day;
-                    fechaMes = segundaFecha.fecha.Month;
-                    fechaAnio = primeraFecha.fecha.Year;
-
-                    fechaNueva = DateTime.Parse(fechaDia + "/" + fechaMes + "/" + fechaAnio);
-                    //Si la fecha de la primera fecha, es mayor que la de la segunda con el año
-                    //de la primera fecha, es que no ha llegado al dia y mes para cumplir años
-
-                    if (primeraFecha.fecha.CompareTo(fechaNueva) > 0)
+                    if (primeraFecha.antesCristo)
                     {
-                        anioDiferencia--;
+                        anioDiferencia += primeraFecha.fecha.Year * 2;
                     }
-
-
-                }
-                else
-                {
-
-                    fechaDia = primeraFecha.fecha.Day;
-                    fechaMes = primeraFecha.fecha.Month;
-                    fechaAnio = segundaFecha.fecha.Year;
-
-                    fechaNueva = DateTime.Parse(fechaDia + "/" + fechaMes + "/" + fechaAnio);
-
-                    //Si la fecha de la segunda fecha, es mayor que la de la primera con el año
-                    //de la segunda fecha, es que no ha llegado al dia y mes para cumplir años
-                    if (segundaFecha.fecha.CompareTo(fechaNueva) > 0)
+                    else
                     {
-                        anioDiferencia--;
+                        anioDiferencia += segundaFecha.fecha.Year * 2;
                     }
                 }
+
+                DateTime fechaNueva;
+                int fechaDia;
+                int fechaMes;
+                int fechaAnio;
+
+                /* Revisa si el primer o el segundo año es 29 de febrero
+                 * si es así, se le resta un día, por lo que la gente del 29
+                 * siempre va a cumplir el 28. 
+                 * Se revisa que las dos fechas no sean fechas iguales a la vez. 
+                 * Si no lo son, Se revisa si la primera o la segunda es anterior. Se comparan
+                 * ambas fechas y si el resultado es > 0 se resta un año.
+                 */
+
+                if (segundaFecha.fecha.Month == 2 && segundaFecha.fecha.Day == 29)
+                {
+                    segundaFecha.fecha = segundaFecha.fecha.AddDays(-1);
+                }
+
+                if (primeraFecha.fecha.Month == 2 && primeraFecha.fecha.Day == 29)
+                {
+                    primeraFecha.fecha = primeraFecha.fecha.AddDays(-1);
+                }
+
+                if (primeraFecha.fecha.Year != segundaFecha.fecha.Year)
+                {
+                    if (primeraFecha.fecha.CompareTo(segundaFecha.fecha) < 0)
+                    {
+
+                        fechaDia = segundaFecha.fecha.Day;
+                        fechaMes = segundaFecha.fecha.Month;
+                        fechaAnio = primeraFecha.fecha.Year;
+
+                        fechaNueva = DateTime.Parse(fechaDia + "/" + fechaMes + "/" + fechaAnio);
+                        //Si la fecha de la primera fecha, es mayor que la de la segunda con el año
+                        //de la primera fecha, es que no ha llegado al dia y mes para cumplir años
+
+                        if (primeraFecha.fecha.CompareTo(fechaNueva) > 0)
+                        {
+                            anioDiferencia--;
+                        }
+
+
+                    }
+                    else
+                    {
+
+                        fechaDia = primeraFecha.fecha.Day;
+                        fechaMes = primeraFecha.fecha.Month;
+                        fechaAnio = segundaFecha.fecha.Year;
+
+                        fechaNueva = DateTime.Parse(fechaDia + "/" + fechaMes + "/" + fechaAnio);
+
+                        //Si la fecha de la segunda fecha, es mayor que la de la primera con el año
+                        //de la segunda fecha, es que no ha llegado al dia y mes para cumplir años
+                        if (segundaFecha.fecha.CompareTo(fechaNueva) > 0)
+                        {
+                            anioDiferencia--;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                anioDiferencia = -1;
             }
 
             return anioDiferencia;
@@ -212,24 +220,34 @@ namespace inclui.edadfecha
         /// 
         public static int DevolverDiferenciaDias(DatosAnio.InformacionAnio primeraFecha, DatosAnio.InformacionAnio segundaFecha)
         {
-            int numeroDiasTotales = Math.Abs((int)(segundaFecha.fecha - primeraFecha.fecha).TotalDays);
-
-            //Si alguna de las dos fechas es a.C, se encargara de calcular los dias
-            //desde la fecha antes de cristo, hasta la fecha 0, luego desde la fecha 0 hasta la fecha a.C,
-            //pero ya d.C, más la diferencia entre la primera fecha y segunda como si fueran las dos d.C
-
-            if (primeraFecha.antesCristo != segundaFecha.antesCristo)
+            int numeroDiasTotales;
+            try
             {
-                DateTime primerAnio = new DateTime();
-                if (primeraFecha.antesCristo)
+                numeroDiasTotales = Math.Abs((int)(segundaFecha.fecha - primeraFecha.fecha).TotalDays);
+
+                //Si alguna de las dos fechas es a.C, se encargara de calcular los dias
+                //desde la fecha antes de cristo, hasta la fecha 0, luego desde la fecha 0 hasta la fecha a.C,
+                //pero ya d.C, más la diferencia entre la primera fecha y segunda como si fueran las dos d.C
+
+                if (primeraFecha.antesCristo != segundaFecha.antesCristo)
                 {
-                    numeroDiasTotales += (int)((primeraFecha.fecha - primerAnio).TotalDays) * 2;
-                }
-                else
-                {
-                    numeroDiasTotales += (int)((segundaFecha.fecha - primerAnio).TotalDays) * 2;
+                    DateTime primerAnio = new DateTime();
+                    if (primeraFecha.antesCristo)
+                    {
+                        numeroDiasTotales += (int)((primeraFecha.fecha - primerAnio).TotalDays) * 2;
+                    }
+                    else
+                    {
+                        numeroDiasTotales += (int)((segundaFecha.fecha - primerAnio).TotalDays) * 2;
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                numeroDiasTotales = -1;
+            }
+
             return numeroDiasTotales;
         }
 
