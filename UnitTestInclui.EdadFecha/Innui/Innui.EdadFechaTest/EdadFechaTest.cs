@@ -41,7 +41,7 @@ namespace Inclui.EdadFechaTest
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Assert.Fail(ex.Message);
             }
 
         }
@@ -75,7 +75,7 @@ namespace Inclui.EdadFechaTest
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Assert.Fail(ex.Message);
             }
 
         }
@@ -109,7 +109,7 @@ namespace Inclui.EdadFechaTest
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Assert.Fail(ex.Message);
             }
 
 
@@ -144,7 +144,7 @@ namespace Inclui.EdadFechaTest
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Assert.Fail(ex.Message);
             }
 
         }
@@ -179,7 +179,7 @@ namespace Inclui.EdadFechaTest
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Assert.Fail(ex.Message);
             }
 
         }
@@ -216,7 +216,7 @@ namespace Inclui.EdadFechaTest
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Assert.Fail(ex.Message);
             }
 
 
@@ -252,7 +252,7 @@ namespace Inclui.EdadFechaTest
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Assert.Fail(ex.Message);
             }
 
 
@@ -271,7 +271,7 @@ namespace Inclui.EdadFechaTest
             {
                 DatosAnio.InformacionAnio primeraFecha = new DatosAnio.InformacionAnio
                 {
-                    fecha = DateTime.Parse("01/02/-45675677"),
+                    fecha = DateTime.Parse("01/02/2001"),
                     antesCristo = true
                 };
 
@@ -288,7 +288,7 @@ namespace Inclui.EdadFechaTest
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Assert.Fail(ex.Message);
             }
 
 
@@ -324,7 +324,7 @@ namespace Inclui.EdadFechaTest
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Assert.Fail(ex.Message);
             }
 
         }
@@ -358,7 +358,7 @@ namespace Inclui.EdadFechaTest
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Assert.Fail(ex.Message);
             }
 
 
@@ -393,7 +393,7 @@ namespace Inclui.EdadFechaTest
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Assert.Fail(ex.Message);
 
             }
 
@@ -429,7 +429,7 @@ namespace Inclui.EdadFechaTest
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Assert.Fail(ex.Message);
             }
 
         }
@@ -465,7 +465,7 @@ namespace Inclui.EdadFechaTest
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Assert.Fail(ex.Message);
             }
 
 
@@ -503,7 +503,7 @@ namespace Inclui.EdadFechaTest
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Assert.Fail(ex.Message);
             }
 
         }
