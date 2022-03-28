@@ -4,9 +4,19 @@ using System;
 
 namespace Inclui.EdadFechaTest
 {
+    /// <summary>
+    /// Clase inicial, en la cual tendremos las pruebas que se haran 
+    /// a las funciones de comprobación
+    /// </summary>
+
     [TestClass]
     public class EdadFechaTest
     {
+        /// <summary>
+        /// Prueba para comprobar la diferencia en años
+        /// entre dos fechas indicadas
+        /// </summary>
+        
         [TestMethod]
         public void HallarDiferenciaEnAnioFechasDC()
         {
@@ -27,6 +37,11 @@ namespace Inclui.EdadFechaTest
 
             Assert.AreEqual(resultadoEsperado, resultadoReal);
         }
+
+        /// <summary>
+        /// Prueba para comprobar la diferencia en dias
+        /// entre dos fechas indicadas
+        /// </summary>
 
         [TestMethod]
         public void HallarDiferenciaEnDiasFechasDC()
@@ -49,6 +64,11 @@ namespace Inclui.EdadFechaTest
             Assert.AreEqual(resultadoEsperado, resultadoReal);
         }
 
+
+        /// <summary>
+        /// Prueba para comprobar la diferencia en años
+        /// entre unas fecha antes de cristo
+        /// </summary>
         [TestMethod]
         public void HallarDiferenciaEnAnioFechasAC()
         {
@@ -69,6 +89,11 @@ namespace Inclui.EdadFechaTest
 
             Assert.AreEqual(resultadoEsperado, resultadoReal);
         }
+
+        /// <summary>
+        /// Prueba para comprobar la diferencia en dias
+        /// entre unas fecha antes de cristo
+        /// </summary>
 
         [TestMethod]
         public void HallarDiferenciaEnDiasFechasAC()
@@ -91,6 +116,12 @@ namespace Inclui.EdadFechaTest
             Assert.AreEqual(resultadoEsperado, resultadoReal);
         }
 
+        /// <summary>
+        /// Prueba para comprobar la diferencia en años
+        /// entre unas fechas que no tengan años de diferencia
+        /// entre si
+        /// </summary>
+
         [TestMethod]
         public void HallarDiferenciaEnAnioFechasSinAnios()
         {
@@ -111,6 +142,14 @@ namespace Inclui.EdadFechaTest
 
             Assert.AreEqual(resultadoEsperado, resultadoReal);
         }
+
+
+        /// <summary>
+        /// Prueba para comprobar la diferencia en dias
+        /// entre unas fechas que no tengan dias de diferencia
+        /// entre si
+        /// </summary>
+
 
         [TestMethod]
         public void HallarDiferenciaEnDiasFechasSinDias()
@@ -133,6 +172,11 @@ namespace Inclui.EdadFechaTest
             Assert.AreEqual(resultadoEsperado, resultadoReal);
         }
 
+        /// <summary>
+        /// Prueba para comprobar la diferencia en años
+        /// entre una fecha antes de cristo y una fecha despues de cristo
+        /// </summary>
+        
         [TestMethod]
         public void HallarDiferenciaEnAnioFechaACyFechaDC()
         {
@@ -154,6 +198,11 @@ namespace Inclui.EdadFechaTest
             Assert.AreEqual(resultadoEsperado, resultadoReal);
         }
 
+        /// <summary>
+        /// Prueba para comprobar la diferencia en dias
+        /// entre una fecha antes de cristo y una fecha despues de cristo
+        /// </summary>
+
         [TestMethod]
         public void HallarDiferenciaEnDiasFechaACyFechaDC()
         {
@@ -174,6 +223,13 @@ namespace Inclui.EdadFechaTest
 
             Assert.AreEqual(resultadoEsperado, resultadoReal);
         }
+
+        /// <summary>
+        /// Prueba para comprobar la diferencia en años
+        /// con un año bisiesto
+        /// </summary>
+
+
         [TestMethod]
         public void DiferenciasAnioBisiesto()
         {
@@ -195,6 +251,11 @@ namespace Inclui.EdadFechaTest
             Assert.AreEqual(resultadoEsperado, resultadoReal);
         }
 
+        /// <summary>
+        /// Prueba para comprobar la diferencia en años
+        /// con un año bisiesto
+        /// </summary>
+        
         [TestMethod]
         public void DiferenciasFebreroMarzoBisiesto()
         {
@@ -216,6 +277,11 @@ namespace Inclui.EdadFechaTest
             Assert.AreEqual(resultadoEsperado, resultadoReal);
         }
 
+        /// <summary>
+        /// Prueba para comprobar la diferencia en años
+        /// con dos años bisiestos
+        /// </summary>
+       
         [TestMethod]
         public void DiferenciasAnioBisiesto2()
         {
@@ -236,6 +302,12 @@ namespace Inclui.EdadFechaTest
 
             Assert.AreEqual(resultadoEsperado, resultadoReal);
         }
+
+        /// <summary>
+        /// Prueba para comprobar la diferencia en años
+        /// con un año bisiesto
+        /// </summary>
+        
         [TestMethod]
         public void DiferenciasAnioBisiesto3()
         {
@@ -257,6 +329,12 @@ namespace Inclui.EdadFechaTest
             Assert.AreEqual(resultadoEsperado, resultadoReal);
         }
 
+
+        /// <summary>
+        /// Prueba para comprobar la diferencia en años
+        /// con un año bisiesto
+        /// </summary>
+        
         [TestMethod]
         public void DiferenciasAnioBisiesto4()
         {
@@ -277,23 +355,31 @@ namespace Inclui.EdadFechaTest
 
             Assert.AreEqual(resultadoEsperado, resultadoReal);
         }
+
+
+        /// <summary>
+        /// Prueba para comprobar la diferencia en años
+        /// con año bisiesto antes de cristo y un año
+        /// no bisiesto despues de cristo 
+        /// </summary>
+
         [TestMethod]
         public void DiferenciasAnioBisiestoAntesDeCristo()
         {
             DatosAnio.InformacionAnio primeraFecha = new DatosAnio.InformacionAnio
             {
                 fecha = DateTime.Parse("1/5/2000"),
-                antesCristo = false
+                antesCristo = true
             };
 
             DatosAnio.InformacionAnio segundaFecha = new DatosAnio.InformacionAnio
             {
                 fecha = DateTime.Parse("12/4/2003"),
-                antesCristo = true
+                antesCristo = false
             };
 
             int resultadoReal = CSComprobaciones.DevolverDiferenciaAnios(primeraFecha, segundaFecha);
-            int resultadoEsperado = 4008;
+            int resultadoEsperado = 4002;
 
             Assert.AreEqual(resultadoEsperado, resultadoReal);
         }

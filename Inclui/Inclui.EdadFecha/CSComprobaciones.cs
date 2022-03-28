@@ -2,6 +2,10 @@
 
 namespace inclui.edadfecha
 {
+    /// <summary>
+    /// Clase inicial en la cual tendremos las funciones 
+    /// de comprobacion de fechas y calculos de las mismas
+    /// </summary>
     public class CSComprobaciones
     {
         /// <summary>
